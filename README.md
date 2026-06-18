@@ -1,1 +1,55 @@
-CloudOptima ☁️CloudOptima is a high-performance, production-grade cloud cost optimization platform designed for enterprise-level resource intelligence and secure cloud orchestration. This project features a robust monorepo architecture, leveraging modern web technologies to provide actionable insights into cloud resource usage.🚀 Key FeaturesMonorepo Architecture: Seamlessly integrates a responsive frontend with scalable backend microservices.Zero-Trust Security: Implemented secure authentication and authorization flows utilizing Firebase.Scalable Data Handling: Managed production-grade data through globally available MongoDB Atlas clusters.Intelligent Routing: Optimized infrastructure with decoupled deployment strategies across Vercel and Render, achieving significant reductions in latency.🛠️ Tech StackFrontend: Next.js (React), Tailwind CSSBackend: Node.js, ExpressDatabase: MongoDB AtlasAuthentication: Firebase AuthDeployment: Vercel (Frontend), Render (Backend)🏗️ Project ArchitectureThis application was engineered with a focus on modularity and high availability:Frontend: Built for speed and SEO using the Next.js framework.Backend: Decoupled microservices architecture ensuring independent scalability.DevOps: Optimized CI/CD pipelines enabling streamlined production deployments and environment variable management.🚀 Live DemoExperience the platform here: CloudOptima Live  🤝 ContactDeveloped by Kritagya Sharma.  GitHub: @kritagya28  Email: ksharma11_be23@thapar.edu  
+CloudOptima ☁️
+CloudOptima is a high-performance, production-grade cloud cost optimization platform designed for enterprise-level resource intelligence and secure cloud orchestration.
+
+🚀 Key Features
+Production-Grade Monorepo: Architected for scalability, integrating a responsive frontend with a robust backend.
+
+Zero-Trust Security: Implemented secure authentication and authorization flows utilizing Firebase.
+
+Cloud Data Management: Managed production-grade data through globally available MongoDB Atlas clusters, ensuring high availability.
+
+Intelligent Infrastructure: Executed decoupled microservices deployment across Vercel and Render, achieving significant latency reduction through intelligent routing.
+
+🏗️ System Architecture & Tech Stack
+Frontend:
+
+Next.js (React): Framework for high-performance, SEO-friendly UI.
+
+Tailwind CSS: For responsive and clean design implementation.
+
+Backend & Cloud:
+
+Node.js / Express: Scalable backend microservices.
+
+Firebase: Secure authentication and management.
+
+MongoDB Atlas: Production-grade NoSQL database for resource data.
+
+Deployment & DevOps:
+
+Vercel: Frontend hosting and CI/CD.
+
+Render: Cloud platform for backend microservice deployment.
+
+🛠️ How to Run the Project Locally
+Clone the repository
+
+Bash
+git clone https://github.com/kritagya28/cloud-optima.git
+cd cloud-optima
+Start the Backend
+
+Bash
+cd backend
+npm install
+node index.js
+Start the Frontend
+
+Bash
+# Open a new terminal window
+cd frontend
+npm install
+npm run dev
+# The application will start running on http://localhost:3000
+⚠️ Academic Integrity & Acknowledgments:
+This project was developed to demonstrate industry-standard cloud optimization, secure authentication, and decoupled deployment strategies. CloudOptima serves as a functional platform for intelligent cloud resource management.
