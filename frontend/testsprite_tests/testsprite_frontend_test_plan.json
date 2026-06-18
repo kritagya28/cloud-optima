@@ -1,0 +1,666 @@
+[
+  {
+    "id": "TC001",
+    "title": "Sign in and reach the dashboard",
+    "description": "An authenticated user can sign in with email and password and land on the dashboard with protected access available.",
+    "category": "User Authentication",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Toggle to login mode"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the form"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the authenticated dashboard is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify protected FinOps pages are accessible"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC002",
+    "title": "Save AWS configuration and verify the connection",
+    "description": "An authenticated user can enter AWS read-only credentials, save them, and verify that the connection is accepted.",
+    "category": "AWS Configuration Settings",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill in {{LOGIN_USER}} into the email field"
+      },
+      {
+        "type": "action",
+        "description": "Fill in {{LOGIN_PASSWORD}} into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to /dashboard/settings"
+      },
+      {
+        "type": "action",
+        "description": "Fill in a valid AWS access key into the access key field"
+      },
+      {
+        "type": "action",
+        "description": "Fill in a valid AWS secret access key into the secret key field"
+      },
+      {
+        "type": "action",
+        "description": "Select a valid AWS region"
+      },
+      {
+        "type": "action",
+        "description": "Save the AWS configuration"
+      },
+      {
+        "type": "action",
+        "description": "Verify the connection"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a successful connection confirmation is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the AWS configuration is shown as saved"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC003",
+    "title": "Register and reach the dashboard",
+    "description": "A new user can switch to registration mode, create an account with email and password, and land on the dashboard.",
+    "category": "User Authentication",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Toggle to registration mode"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the form"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the authenticated dashboard is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify protected FinOps pages are accessible"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC004",
+    "title": "Access the dashboard after signing in",
+    "description": "An authenticated user can sign in and reach the main dashboard summary without losing access to protected pages.",
+    "category": "Dashboard Summary",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the form"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the dashboard summary is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the user can continue to protected FinOps pages"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC005",
+    "title": "Review the dashboard cost summary",
+    "description": "An authenticated user can open the dashboard and review the estimated monthly bill, potential savings, active resource count, and service cost distribution.",
+    "category": "Dashboard Summary",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the form"
+      },
+      {
+        "type": "action",
+        "description": "Click the dashboard overview link"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify summary cards are displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the service cost distribution chart is displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC006",
+    "title": "Run a cost optimization scan and review recommendations",
+    "description": "A user can run a scan, inspect recommendation cards with savings details, and apply an optimization action that updates the result view.",
+    "category": "Cloud Cost Scanner",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the form"
+      },
+      {
+        "type": "action",
+        "description": "Click the scanner page link"
+      },
+      {
+        "type": "action",
+        "description": "Run a cost optimization scan"
+      },
+      {
+        "type": "action",
+        "description": "Apply an optimization action for a recommendation"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify recommendation cards are displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the optimization result is reflected in the recommendations"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC007",
+    "title": "View historical cost trend reports",
+    "description": "An authenticated user can open the reports page and see historical cost trend charts for monthly analytics.",
+    "category": "Cost Trend Reports",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill in {{LOGIN_USER}} into the email field"
+      },
+      {
+        "type": "action",
+        "description": "Fill in {{LOGIN_PASSWORD}} into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to /dashboard/reports"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify historical cost trend charts are displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify monthly cost analytics are visible"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC008",
+    "title": "View historical cost trends in reports",
+    "description": "An authenticated user can open the reports page and compare historical cost trends across months using the available analytics charts.",
+    "category": "Cloud Cost Scanner",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the form"
+      },
+      {
+        "type": "action",
+        "description": "Click the reports page link"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify historical cost trend charts are displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify monthly comparison data is displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC009",
+    "title": "Persist AWS configuration for the session",
+    "description": "An authenticated user can save AWS credentials and return later in the same session to see the configuration remains available.",
+    "category": "AWS Configuration Settings",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill in {{LOGIN_USER}} into the email field"
+      },
+      {
+        "type": "action",
+        "description": "Fill in {{LOGIN_PASSWORD}} into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to /dashboard/settings"
+      },
+      {
+        "type": "action",
+        "description": "Fill in a valid AWS access key into the access key field"
+      },
+      {
+        "type": "action",
+        "description": "Fill in a valid AWS secret access key into the secret key field"
+      },
+      {
+        "type": "action",
+        "description": "Select a valid AWS region"
+      },
+      {
+        "type": "action",
+        "description": "Save the AWS configuration"
+      },
+      {
+        "type": "action",
+        "description": "Click the dashboard overview link"
+      },
+      {
+        "type": "action",
+        "description": "Return to the AWS settings page"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the saved AWS configuration remains visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the settings page still shows a configured state"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC010",
+    "title": "Review flagged resources from a scan",
+    "description": "A user can run a scan and inspect flagged resources with resource identifiers, service status, idle reason, and potential savings.",
+    "category": "Cloud Cost Scanner",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the form"
+      },
+      {
+        "type": "action",
+        "description": "Click the scanner page link"
+      },
+      {
+        "type": "action",
+        "description": "Run a cost optimization scan"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify flagged resources are displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify idle reason and potential savings fields are displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC011",
+    "title": "Show email validation for an invalid sign-in address",
+    "description": "A user entering an invalid email format on the authentication screen sees validation feedback and cannot proceed successfully.",
+    "category": "User Authentication",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Toggle to login mode"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with an invalid email format"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the form"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify email validation feedback is visible"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC012",
+    "title": "Compare cost changes across periods",
+    "description": "An authenticated user can review the reports page and compare cost trends across different months.",
+    "category": "Cost Trend Reports",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill in {{LOGIN_USER}} into the email field"
+      },
+      {
+        "type": "action",
+        "description": "Fill in {{LOGIN_PASSWORD}} into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to /dashboard/reports"
+      },
+      {
+        "type": "action",
+        "description": "Scroll to the historical analytics section"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify multiple periods of cost trend data are visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify both bar and line trend visualizations are displayed"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC013",
+    "title": "Reject AWS settings when a required field is missing",
+    "description": "An authenticated user sees validation when trying to save AWS configuration without completing all required fields.",
+    "category": "AWS Configuration Settings",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill in {{LOGIN_USER}} into the email field"
+      },
+      {
+        "type": "action",
+        "description": "Fill in {{LOGIN_PASSWORD}} into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to /dashboard/settings"
+      },
+      {
+        "type": "action",
+        "description": "Fill in a valid AWS access key into the access key field"
+      },
+      {
+        "type": "action",
+        "description": "Select a valid AWS region"
+      },
+      {
+        "type": "action",
+        "description": "Save the AWS configuration"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a validation error is visible for the missing AWS secret access key"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the configuration is not shown as saved"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC014",
+    "title": "Switch between login and registration modes",
+    "description": "A user can toggle the authentication form between sign-in and registration modes and continue entering credentials.",
+    "category": "User Authentication",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Toggle to registration mode"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the registration form is displayed"
+      },
+      {
+        "type": "action",
+        "description": "Toggle to login mode"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the login form is displayed"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC015",
+    "title": "Reject AWS settings when the region is invalid",
+    "description": "An authenticated user sees validation when selecting an invalid AWS region before saving AWS configuration.",
+    "category": "AWS Configuration Settings",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill in {{LOGIN_USER}} into the email field"
+      },
+      {
+        "type": "action",
+        "description": "Fill in {{LOGIN_PASSWORD}} into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to /dashboard/settings"
+      },
+      {
+        "type": "action",
+        "description": "Fill in a valid AWS access key into the access key field"
+      },
+      {
+        "type": "action",
+        "description": "Fill in a valid AWS secret access key into the secret key field"
+      },
+      {
+        "type": "action",
+        "description": "Select an invalid AWS region value if available"
+      },
+      {
+        "type": "action",
+        "description": "Save the AWS configuration"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a region validation error is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the configuration is not shown as saved"
+      }
+    ],
+    "priority": "Low"
+  },
+  {
+    "id": "TC016",
+    "title": "Handle an empty reports state",
+    "description": "An authenticated user sees an empty-state message on reports when historical cost data is not available.",
+    "category": "Cost Trend Reports",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill in {{LOGIN_USER}} into the email field"
+      },
+      {
+        "type": "action",
+        "description": "Fill in {{LOGIN_PASSWORD}} into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to /dashboard/reports"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify an empty state message is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify historical charts are not displayed"
+      }
+    ],
+    "priority": "Low"
+  }
+]

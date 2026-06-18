@@ -1,0 +1,18 @@
+{
+  "status": "commited",
+  "type": "backend",
+  "scope": "codebase",
+  "localEndpoint": "http://localhost:5000",
+  "backendAuthType": "public",
+  "executionArgs": {
+    "projectName": "backend",
+    "projectPath": "d:\\Users\\os264\\OneDrive\\Desktop\\cloud-optima\\backend",
+    "testIds": [],
+    "additionalInstruction": "Run all backend tests.",
+    "serverMode": "development",
+    "envs": {
+      "API_KEY": "sk-user-6q86j8LuAE02KCWIdmWFKqIAU14b13PUk67etU1LHTE-lPRFJtZRXIYJtJP4mPkkpkkWz-bBvYtfKR1G4VV2aXQu8OvRqbKpYmohfJxPQ1P1daa1szysQn0Ia8zmsnTgV5c"
+    }
+  },
+  "serverPort": 56009
+}

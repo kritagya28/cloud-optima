@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AWS Settings | CloudOptix</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-container": "#bc4800",
+                    "on-tertiary": "#ffffff",
+                    "surface-bright": "#1e293b",
+                    "primary-fixed-dim": "#b4c5ff",
+                    "on-secondary-container": "#cbd5e1",
+                    "background": "#0f172a",
+                    "primary-container": "#1e40af",
+                    "on-surface-variant": "#94a3b8",
+                    "surface-container-high": "#1e293b",
+                    "tertiary-fixed-dim": "#ffb596",
+                    "on-secondary-fixed-variant": "#94a3b8",
+                    "error-container": "#450a0a",
+                    "surface-container-lowest": "#0f172a",
+                    "surface-variant": "#1e293b",
+                    "surface": "#0f172a",
+                    "on-tertiary-fixed": "#ffede6",
+                    "tertiary-fixed": "#ffdbcd",
+                    "surface-container": "#1e293b",
+                    "surface-container-highest": "#334155",
+                    "inverse-surface": "#f1f5f9",
+                    "on-primary-fixed": "#00174b",
+                    "secondary-container": "#1e293b",
+                    "surface-tint": "#3b82f6",
+                    "on-secondary": "#ffffff",
+                    "tertiary": "#ffb596",
+                    "on-primary-fixed-variant": "#b4c5ff",
+                    "secondary-fixed": "#334155",
+                    "on-tertiary-fixed-variant": "#ffdbcd",
+                    "outline-variant": "#334155",
+                    "primary": "#3b82f6",
+                    "surface-container-low": "#1e293b",
+                    "outline": "#475569",
+                    "on-secondary-fixed": "#f1f5f9",
+                    "on-error": "#ffffff",
+                    "inverse-on-surface": "#0f172a",
+                    "on-tertiary-container": "#ffede6",
+                    "inverse-primary": "#004ac6",
+                    "surface-dim": "#0f172a",
+                    "on-surface": "#f1f5f9",
+                    "on-primary": "#ffffff",
+                    "error": "#ef4444",
+                    "secondary": "#94a3b8",
+                    "on-background": "#f1f5f9",
+                    "on-primary-container": "#dbeafe",
+                    "on-error-container": "#fca5a5",
+                    "secondary-fixed-dim": "#94a3b8",
+                    "primary-fixed": "#dbe1ff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "base": "4px",
+                    "2xl": "48px",
+                    "margin-mobile": "16px",
+                    "gutter": "24px",
+                    "sm": "12px",
+                    "margin-desktop": "32px",
+                    "xs": "8px",
+                    "xl": "32px",
+                    "lg": "24px",
+                    "md": "16px"
+            },
+            "fontFamily": {
+                    "body-md": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "label-md": ["Inter"],
+                    "display-lg-mobile": ["Inter"],
+                    "mono-data": ["JetBrains Mono"],
+                    "headline-sm": ["Inter"],
+                    "display-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "display-lg-mobile": ["28px", {"lineHeight": "34px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "mono-data": ["13px", {"lineHeight": "18px", "fontWeight": "400"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "display-lg": ["36px", {"lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-background text-on-background selection:bg-primary-container selection:text-on-primary-container">
+<div class="flex h-screen overflow-hidden">
+<!-- SideNavBar -->
+<aside class="h-screen w-64 border-r border-outline-variant bg-surface-container-lowest flex flex-col py-6 px-4 shrink-0">
+<div class="mb-10 px-4">
+<h1 class="font-headline-sm text-headline-sm font-bold text-primary">CloudOptix</h1>
+<p class="font-label-md text-label-md text-secondary">FinOps Intelligence</p>
+</div>
+<nav class="flex-1 space-y-2">
+<a class="flex items-center gap-3 px-4 py-3 text-secondary hover:bg-surface-container-high transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-body-md text-body-md">Overview</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-secondary hover:bg-surface-container-high transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="troubleshoot">troubleshoot</span>
+<span class="font-body-md text-body-md">Resource Scanner</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-secondary hover:bg-surface-container-high transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span class="font-body-md text-body-md">Reports</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 bg-secondary-container text-on-surface rounded-xl scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-body-md text-body-md">Settings</span>
+</a>
+</nav>
+<div class="mt-auto px-4 pt-6 border-t border-outline-variant">
+<button class="w-full py-3 bg-primary text-on-primary rounded-xl font-body-md text-body-md hover:opacity-90 transition-opacity">
+                    Upgrade Plan
+                </button>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col overflow-hidden">
+<!-- TopNavBar -->
+<header class="w-full h-16 bg-surface border-b border-outline-variant flex justify-between items-center px-margin-desktop shrink-0">
+<div class="flex items-center flex-1 max-w-xl">
+<div class="relative w-full">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline" data-icon="search">search</span>
+<input class="w-full bg-surface-container-low border-none rounded-full pl-10 pr-4 py-2 text-body-md text-on-surface focus:ring-2 focus:ring-primary/20 transition-all placeholder:text-outline" placeholder="Search settings or regions..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6 ml-gutter">
+<div class="hidden md:flex items-center gap-4">
+<a class="font-label-md text-label-md text-secondary hover:text-primary transition-all duration-200" href="#">Global</a>
+<a class="font-label-md text-label-md text-primary font-bold border-b-2 border-primary transition-all duration-200" href="#">US-East-1</a>
+<a class="font-label-md text-label-md text-secondary hover:text-primary transition-all duration-200" href="#">EU-West-1</a>
+</div>
+<div class="flex items-center gap-4 text-secondary">
+<button class="hover:text-primary transition-colors"><span class="material-symbols-outlined" data-icon="notifications">notifications</span></button>
+<button class="hover:text-primary transition-colors"><span class="material-symbols-outlined" data-icon="help_outline">help_outline</span></button>
+<button class="hover:text-primary transition-colors"><span class="material-symbols-outlined" data-icon="account_circle">account_circle</span></button>
+</div>
+</div>
+</header>
+<!-- Scrollable Content -->
+<div class="flex-1 overflow-y-auto p-margin-desktop space-y-lg hide-scrollbar">
+<!-- Page Header -->
+<div class="mb-8">
+<h2 class="font-headline-md text-headline-md text-on-surface">AWS Settings</h2>
+<p class="font-body-md text-body-md text-secondary">Configure your cloud credentials and scanning parameters to optimize infrastructure costs.</p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-lg">
+<!-- Left Column: Credentials & Regions -->
+<div class="lg:col-span-7 space-y-lg">
+<!-- 1. AWS Account Credentials -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6 shadow-sm">
+<div class="flex items-center justify-between mb-6">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-primary-container/20 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" data-icon="key">key</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">AWS Account Credentials</h3>
+</div>
+<div class="flex items-center gap-2 px-3 py-1 rounded-full bg-error-container text-on-error-container text-xs font-medium">
+<span class="w-2 h-2 rounded-full bg-error animate-pulse"></span>
+                                    Not Validated
+                                </div>
+</div>
+<div class="space-y-4">
+<div class="space-y-1.5">
+<label class="font-label-md text-label-md text-on-surface-variant">AWS Access Key ID</label>
+<input class="w-full bg-surface-container-low border border-outline-variant rounded-lg px-4 py-2.5 text-body-md text-on-surface focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all font-mono-data" placeholder="AKIAXXXXXXXXXXXXXXXX" type="text" value="AKIA****************"/>
+</div>
+<div class="space-y-1.5">
+<label class="font-label-md text-label-md text-on-surface-variant">Secret Access Key</label>
+<div class="relative">
+<input class="w-full bg-surface-container-low border border-outline-variant rounded-lg px-4 py-2.5 text-body-md text-on-surface focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all font-mono-data" placeholder="Enter secret key" type="password" value="••••••••••••••••••••••••••••••••"/>
+<button class="absolute right-3 top-1/2 -translate-y-1/2 text-outline hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined text-[20px]" data-icon="visibility_off">visibility_off</span>
+</button>
+</div>
+</div>
+<div class="pt-2 flex justify-end">
+<button class="px-6 py-2.5 bg-primary text-on-primary rounded-lg font-body-md text-body-md font-medium hover:bg-primary-container active:scale-95 transition-all shadow-sm">
+                                        Validate Credentials
+                                    </button>
+</div>
+</div>
+</section>
+<!-- 2. Region Selection -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6 shadow-sm">
+<div class="flex items-center gap-3 mb-6">
+<div class="w-10 h-10 rounded-lg bg-secondary-container/50 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined" data-icon="public">public</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Scanning Scope</h3>
+<p class="text-label-md text-secondary">Select the regions CloudOptix will monitor for optimization.</p>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<!-- Multi-select implementation using clean checkbox cards -->
+<label class="group relative border border-outline-variant hover:border-primary rounded-lg p-4 cursor-pointer transition-all bg-surface-container-low hover:bg-primary/5">
+<div class="flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-body-md font-semibold text-on-surface">US-East-1</span>
+<span class="text-xs text-secondary">US East (N. Virginia)</span>
+</div>
+<input checked="" class="w-5 h-5 rounded border-outline-variant bg-surface-container-low text-primary focus:ring-primary/20 transition-all" type="checkbox"/>
+</div>
+</label>
+<label class="group relative border border-outline-variant hover:border-primary rounded-lg p-4 cursor-pointer transition-all bg-surface-container-low hover:bg-primary/5">
+<div class="flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-body-md font-semibold text-on-surface">EU-West-1</span>
+<span class="text-xs text-secondary">Europe (Ireland)</span>
+</div>
+<input checked="" class="w-5 h-5 rounded border-outline-variant bg-surface-container-low text-primary focus:ring-primary/20 transition-all" type="checkbox"/>
+</div>
+</label>
+<label class="group relative border border-outline-variant hover:border-primary rounded-lg p-4 cursor-pointer transition-all bg-surface-container-low hover:bg-primary/5">
+<div class="flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-body-md font-semibold text-on-surface">AP-Southeast-1</span>
+<span class="text-xs text-secondary">Asia Pacific (Singapore)</span>
+</div>
+<input class="w-5 h-5 rounded border-outline-variant bg-surface-container-low text-primary focus:ring-primary/20 transition-all" type="checkbox"/>
+</div>
+</label>
+<label class="group relative border border-outline-variant hover:border-primary rounded-lg p-4 cursor-pointer transition-all bg-surface-container-low hover:bg-primary/5">
+<div class="flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-body-md font-semibold text-on-surface">US-West-2</span>
+<span class="text-xs text-secondary">US West (Oregon)</span>
+</div>
+<input class="w-5 h-5 rounded border-outline-variant bg-surface-container-low text-primary focus:ring-primary/20 transition-all" type="checkbox"/>
+</div>
+</label>
+</div>
+<button class="mt-6 w-full py-2.5 border border-outline text-secondary hover:text-on-surface hover:bg-surface-container-high rounded-lg font-body-md transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]" data-icon="add">add</span>
+                                Add More Regions
+                            </button>
+</section>
+</div>
+<!-- Right Column: IAM Policy -->
+<div class="lg:col-span-5">
+<!-- 3. IAM Policy Verification -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-xl flex flex-col h-full shadow-sm sticky top-0">
+<div class="p-6 border-b border-outline-variant">
+<div class="flex items-center gap-3 mb-2">
+<div class="w-10 h-10 rounded-lg bg-tertiary-container/30 flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined" data-icon="policy">policy</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">IAM Policy Verification</h3>
+</div>
+<p class="text-body-md text-secondary">Attach this least-privilege policy to your IAM user for read-only metadata access.</p>
+</div>
+<div class="flex-1 p-6 space-y-6">
+<div class="bg-black/40 rounded-xl border border-outline-variant relative overflow-hidden group">
+<div class="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-2 bg-surface-container-high border border-outline-variant rounded-lg shadow-sm hover:bg-primary hover:text-on-primary transition-all">
+<span class="material-symbols-outlined text-[20px]" data-icon="content_copy">content_copy</span>
+</button>
+</div>
+<pre class="p-4 font-mono-data text-[12px] leading-relaxed text-blue-300 overflow-x-auto hide-scrollbar whitespace-pre">{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "ce:GetCostAndUsage",
+        "cloudwatch:GetMetricStatistics",
+        "cloudwatch:ListMetrics",
+        "ec2:DescribeInstances",
+        "s3:GetBucketTagging",
+        "ebs:DescribeVolumes"
+      ],
+      "Resource": "*"
+    }
+  ]
+}</pre>
+</div>
+<div class="space-y-4">
+<h4 class="font-label-md text-label-md uppercase tracking-wider text-outline">Permission Status</h4>
+<div class="space-y-3">
+<div class="flex items-center justify-between text-body-md">
+<span class="flex items-center gap-2 text-on-surface">
+<span class="material-symbols-outlined text-green-500" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                                                Cost Explorer Access
+                                            </span>
+<span class="text-green-500 font-medium">Active</span>
+</div>
+<div class="flex items-center justify-between text-body-md">
+<span class="flex items-center gap-2 text-on-surface">
+<span class="material-symbols-outlined text-green-500" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                                                EC2 Metadata Read
+                                            </span>
+<span class="text-green-500 font-medium">Active</span>
+</div>
+<div class="flex items-center justify-between text-body-md">
+<span class="flex items-center gap-2 text-on-surface">
+<span class="material-symbols-outlined text-error" data-icon="cancel" style="font-variation-settings: 'FILL' 1;">cancel</span>
+                                                CloudWatch Metrics
+                                            </span>
+<span class="text-error font-medium">Access Denied</span>
+</div>
+</div>
+</div>
+</div>
+<div class="p-6 mt-auto bg-surface-container-low/30 border-t border-outline-variant">
+<button class="w-full py-3 bg-secondary text-on-secondary rounded-xl font-body-md font-medium hover:bg-secondary/80 transition-colors flex items-center justify-center gap-2 shadow-sm">
+<span class="material-symbols-outlined text-[20px]" data-icon="content_copy">content_copy</span>
+                                    Copy Policy JSON
+                                </button>
+</div>
+</section>
+</div>
+</div>
+<!-- Atmospheric Footer Visual -->
+<div class="mt-xl pt-xl border-t border-outline-variant/30 text-center">
+<p class="text-label-md text-outline">CloudOptix uses AWS STS for secure, ephemeral session tokens when scanning. No sensitive data is stored long-term.</p>
+</div>
+</div>
+</main>
+</div>
+<!-- Micro-interaction Script -->
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const secretInput = document.querySelector('input[type="password"]');
+            const visibilityBtn = secretInput.nextElementSibling;
+            const visibilityIcon = visibilityBtn.querySelector('.material-symbols-outlined');
+
+            visibilityBtn.addEventListener('click', () => {
+                const isPassword = secretInput.type === 'password';
+                secretInput.type = isPassword ? 'text' : 'password';
+                visibilityIcon.textContent = isPassword ? 'visibility' : 'visibility_off';
+            });
+
+            // Smooth entrance animations for sections
+            const sections = document.querySelectorAll('section');
+            sections.forEach((section, index) => {
+                section.style.opacity = '0';
+                section.style.transform = 'translateY(10px)';
+                section.style.transition = `all 0.4s ease-out ${index * 0.1}s`;
+                setTimeout(() => {
+                    section.style.opacity = '1';
+                    section.style.transform = 'translateY(0)';
+                }, 50);
+            });
+        });
+    </script>
+</body></html>

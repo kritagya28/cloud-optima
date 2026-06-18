@@ -1,0 +1,42 @@
+[
+  {
+    "id": "TC001",
+    "title": "gethealthapihealthcheck",
+    "description": "Verify GET /health returns 200 response confirming service health when the backend service is running and reachable."
+  },
+  {
+    "id": "TC002",
+    "title": "postapisettingsawssavecredentials",
+    "description": "Verify POST /api/settings/aws saves encrypted AWS credentials successfully with valid JWT and valid request body, and returns 200 response."
+  },
+  {
+    "id": "TC003",
+    "title": "postapivalidateawsvalidatecredentials",
+    "description": "Verify POST /api/validate-aws validates AWS credentials using STS and returns 200 response for valid credentials."
+  },
+  {
+    "id": "TC004",
+    "title": "postapigetdashboarddatafetchresources",
+    "description": "Verify POST /api/get-dashboard-data returns 200 response with active resource and cost payload when provided valid AWS credentials."
+  },
+  {
+    "id": "TC005",
+    "title": "getapidashboardsummaryfetchsummary",
+    "description": "Verify GET /api/dashboard/summary returns 200 response with aggregated cost metrics and recommendation counts when authenticated."
+  },
+  {
+    "id": "TC006",
+    "title": "getapiresourcesscannerscanresources",
+    "description": "Verify GET /api/resources/scanner returns 200 response with scan results and optimization recommendations when authenticated."
+  },
+  {
+    "id": "TC007",
+    "title": "getapiresourceshistoryfetchhistoricaldata",
+    "description": "Verify GET /api/resources/history returns 200 response with historical cost trend data when authenticated."
+  },
+  {
+    "id": "TC008",
+    "title": "postapiresourcesoptimizeapplyaction",
+    "description": "Verify POST /api/resources/optimize/:id applies optimization action to specified resource and returns 200 response when authenticated and resource exists."
+  }
+]

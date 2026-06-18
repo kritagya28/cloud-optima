@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Reports &amp; Exports | CloudOptix</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary": "#ffffff",
+                    "background": "#0f172a",
+                    "primary": "#38bdf8",
+                    "on-secondary": "#ffffff",
+                    "on-tertiary-fixed": "#360f00",
+                    "primary-fixed-dim": "#0ea5e9",
+                    "inverse-surface": "#f8fafc",
+                    "surface-container-highest": "#334155",
+                    "on-tertiary-container": "#ffede6",
+                    "tertiary": "#f97316",
+                    "primary-fixed": "#bae6fd",
+                    "outline": "#64748b",
+                    "on-tertiary": "#ffffff",
+                    "on-secondary-container": "#94a3b8",
+                    "surface-variant": "#1e293b",
+                    "surface-bright": "#1e293b",
+                    "primary-container": "#0369a1",
+                    "on-error": "#ffffff",
+                    "secondary": "#94a3b8",
+                    "tertiary-fixed-dim": "#fdba74",
+                    "on-primary-fixed-variant": "#0c4a6e",
+                    "on-error-container": "#ffdad6",
+                    "secondary-container": "#1e293b",
+                    "error": "#ef4444",
+                    "surface-container-low": "#1e293b",
+                    "surface-container": "#1e293b",
+                    "on-surface": "#f8fafc",
+                    "surface-container-lowest": "#0f172a",
+                    "secondary-fixed-dim": "#475569",
+                    "secondary-fixed": "#334155",
+                    "error-container": "#7f1d1d",
+                    "surface-dim": "#0f172a",
+                    "on-secondary-fixed": "#f8fafc",
+                    "on-background": "#f8fafc",
+                    "on-primary-container": "#e0f2fe",
+                    "tertiary-container": "#7c2d12",
+                    "on-secondary-fixed-variant": "#cbd5e1",
+                    "tertiary-fixed": "#ffdbcd",
+                    "outline-variant": "#334155",
+                    "on-primary-fixed": "#082f49",
+                    "inverse-on-surface": "#0f172a",
+                    "on-tertiary-fixed-variant": "#7d2d00",
+                    "surface-tint": "#38bdf8",
+                    "surface": "#1e293b",
+                    "on-surface-variant": "#cbd5e1",
+                    "inverse-primary": "#38bdf8",
+                    "surface-container-high": "#334155"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "xs": "8px",
+                    "base": "4px",
+                    "md": "16px",
+                    "margin-mobile": "16px",
+                    "sm": "12px",
+                    "margin-desktop": "32px",
+                    "2xl": "48px",
+                    "xl": "32px",
+                    "gutter": "24px",
+                    "lg": "24px"
+            },
+            "fontFamily": {
+                    "headline-md": ["Inter"],
+                    "display-lg-mobile": ["Inter"],
+                    "mono-data": ["JetBrains Mono"],
+                    "display-lg": ["Inter"],
+                    "headline-sm": ["Inter"],
+                    "label-md": ["Inter"],
+                    "body-md": ["Inter"],
+                    "body-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "display-lg-mobile": ["28px", {"lineHeight": "34px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "mono-data": ["13px", {"lineHeight": "18px", "fontWeight": "400"}],
+                    "display-lg": ["36px", {"lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a;
+        }
+        .bento-card {
+            background-color: #1e293b;
+            border: 1px solid #334155;
+            transition: all 0.2s ease-in-out;
+        }
+        .bento-card:hover {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #475569;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface">
+<!-- SideNavBar Integration -->
+<aside class="h-full w-64 fixed left-0 top-0 bg-surface border-r border-outline-variant flex flex-col h-screen py-md px-sm z-50">
+<div class="mb-xl px-md">
+<h1 class="font-headline-sm text-headline-sm font-bold text-primary">FinOps Portal</h1>
+<p class="font-label-md text-label-md text-on-surface-variant">AWS Infrastructure</p>
+</div>
+<nav class="flex-1 space-y-base">
+<!-- Overview -->
+<a class="flex items-center gap-md px-md py-sm rounded transition-colors duration-200 ease-in-out text-on-secondary-fixed-variant hover:bg-surface-container-high" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-body-md text-body-md">Overview</span>
+</a>
+<!-- Resource Scanner -->
+<a class="flex items-center gap-md px-md py-sm rounded transition-colors duration-200 ease-in-out text-on-secondary-fixed-variant hover:bg-surface-container-high" href="#">
+<span class="material-symbols-outlined">troubleshoot</span>
+<span class="font-body-md text-body-md">Resource Scanner</span>
+</a>
+<!-- Reports (ACTIVE) -->
+<a class="flex items-center gap-md px-md py-sm rounded transition-colors duration-200 ease-in-out text-primary font-bold border-r-4 border-primary bg-primary/10" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-body-md text-body-md">Reports</span>
+</a>
+<!-- Settings -->
+<a class="flex items-center gap-md px-md py-sm rounded transition-colors duration-200 ease-in-out text-on-secondary-fixed-variant hover:bg-surface-container-high" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-body-md text-body-md">Settings</span>
+</a>
+</nav>
+<div class="mt-auto px-md py-md border-t border-outline-variant flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="Alex Chen Profile" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDpBSBRrtpFKJlDHXlQpDo95FpvD2OsViicceRvQ2ryJgR5bfAIEp8e2cW2OIBeXLTd_rt_5gIVh_lylhHgPlec1gaSy_o22XqYfsm3LsODze9Ny8Tux-MhLoDCRzyU-Psk1P_nqJdzVeZetZewLSVWWmZ8RLjuGNsulZ_4U6AajLzEo0d_NiLVmaWrf9Axkei996QeQI8JufuRuUCyw3hV9JTw31NT24hpS6xVUyNqg4YJcPTpLkZhzBVytszE433feSLa10cNpTE"/>
+</div>
+<div>
+<p class="font-label-md text-label-md font-bold text-on-surface">Alex Chen</p>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-wider">Lead Architect</p>
+</div>
+</div>
+</aside>
+<!-- TopNavBar Integration -->
+<header class="flex justify-between items-center h-16 ml-64 px-xl bg-background sticky top-0 z-40 border-b border-outline-variant">
+<div class="flex items-center gap-xl">
+<span class="font-headline-sm text-headline-sm font-black text-primary">FinOps Optimizer</span>
+<div class="relative w-64">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-sm">search</span>
+<input class="w-full pl-10 pr-4 py-1.5 bg-surface-container-low border border-outline-variant rounded-lg text-body-md text-on-surface placeholder-outline focus:ring-2 focus:ring-primary/20 focus:outline-none" placeholder="Search resources..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-lg">
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-all duration-150">public</button>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-all duration-150">notifications</button>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-all duration-150">account_circle</button>
+</div>
+</header>
+<!-- Main Content -->
+<main class="ml-64 p-margin-desktop space-y-xl max-w-[1440px]">
+<!-- Header Section -->
+<section class="space-y-base">
+<h2 class="font-display-lg text-display-lg text-on-surface">Reports &amp; Exports</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">
+                Configure customized infrastructure audits, schedule automated delivery to stakeholders, and access your repository of historical cloud financial data.
+            </p>
+</section>
+<!-- Top Row: Generate & Scheduled -->
+<div class="grid grid-cols-12 gap-gutter">
+<!-- Generate New Report Section (Bento Column 1-7) -->
+<section class="col-span-12 lg:col-span-7 bento-card rounded-xl p-xl flex flex-col gap-lg">
+<div class="flex items-center gap-md">
+<div class="p-base bg-primary/20 rounded-lg text-primary">
+<span class="material-symbols-outlined">add_chart</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Generate New Report</h3>
+</div>
+<div class="grid grid-cols-2 gap-lg">
+<div class="space-y-xs">
+<label class="font-label-md text-label-md text-on-surface-variant">Report Type</label>
+<select class="w-full bg-surface-container border-outline-variant rounded-lg font-body-md text-on-surface focus:border-primary focus:ring-primary/20">
+<option>Monthly Summary</option>
+<option>Resource Waste Analysis</option>
+<option>Budget Variance Report</option>
+<option>Anomalous Spend Audit</option>
+<option>Tagging Compliance</option>
+</select>
+</div>
+<div class="space-y-xs">
+<label class="font-label-md text-label-md text-on-surface-variant">Date Range</label>
+<select class="w-full bg-surface-container border-outline-variant rounded-lg font-body-md text-on-surface focus:border-primary focus:ring-primary/20">
+<option>Last 30 Days</option>
+<option>Last 3 Months</option>
+<option>Year to Date</option>
+<option>Custom Range</option>
+</select>
+</div>
+</div>
+<div class="space-y-xs">
+<label class="font-label-md text-label-md text-on-surface-variant">Export Format</label>
+<div class="flex gap-md">
+<label class="flex-1 cursor-pointer group">
+<input checked="" class="hidden peer" name="format" type="radio" value="pdf"/>
+<div class="flex items-center justify-center gap-base p-md border border-outline-variant rounded-xl text-on-surface-variant peer-checked:border-primary peer-checked:bg-primary/10 peer-checked:text-on-surface group-hover:bg-surface-container-high transition-all">
+<span class="material-symbols-outlined text-error">picture_as_pdf</span>
+<span class="font-body-md">PDF</span>
+</div>
+</label>
+<label class="flex-1 cursor-pointer group">
+<input class="hidden peer" name="format" type="radio" value="csv"/>
+<div class="flex items-center justify-center gap-base p-md border border-outline-variant rounded-xl text-on-surface-variant peer-checked:border-primary peer-checked:bg-primary/10 peer-checked:text-on-surface group-hover:bg-surface-container-high transition-all">
+<span class="material-symbols-outlined text-primary">description</span>
+<span class="font-body-md">CSV</span>
+</div>
+</label>
+<label class="flex-1 cursor-pointer group">
+<input class="hidden peer" name="format" type="radio" value="json"/>
+<div class="flex items-center justify-center gap-base p-md border border-outline-variant rounded-xl text-on-surface-variant peer-checked:border-primary peer-checked:bg-primary/10 peer-checked:text-on-surface group-hover:bg-surface-container-high transition-all">
+<span class="material-symbols-outlined text-tertiary">code</span>
+<span class="font-body-md">JSON</span>
+</div>
+</label>
+</div>
+</div>
+<div class="pt-md">
+<button class="w-full bg-primary text-on-primary py-lg rounded-xl font-headline-sm hover:brightness-110 transition-all flex items-center justify-center gap-md shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined">auto_awesome</span>
+                        Generate Instant Report
+                    </button>
+</div>
+</section>
+<!-- Scheduled Reports Section (Bento Column 8-12) -->
+<section class="col-span-12 lg:col-span-5 bento-card rounded-xl p-xl flex flex-col gap-lg">
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-md">
+<div class="p-base bg-secondary-container rounded-lg text-secondary">
+<span class="material-symbols-outlined">schedule</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Scheduled Jobs</h3>
+</div>
+<button class="text-primary font-label-md hover:underline font-bold">+ New Job</button>
+</div>
+<div class="space-y-md flex-1">
+<!-- Job 1 -->
+<div class="p-md border border-outline-variant rounded-xl flex items-center justify-between group hover:bg-surface-container-high/50 transition-colors">
+<div class="flex gap-md">
+<div class="w-10 h-10 rounded bg-surface-container-highest flex items-center justify-center">
+<span class="material-symbols-outlined text-on-surface-variant">calendar_month</span>
+</div>
+<div>
+<h4 class="font-label-md font-bold text-on-surface">Exec Weekly Rollup</h4>
+<p class="text-[11px] text-on-surface-variant">Every Mon at 08:00 UTC</p>
+</div>
+</div>
+<div class="flex gap-sm opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary">edit</button>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-error">pause_circle</button>
+</div>
+</div>
+<!-- Job 2 -->
+<div class="p-md border border-outline-variant rounded-xl flex items-center justify-between group hover:bg-surface-container-high/50 transition-colors">
+<div class="flex gap-md">
+<div class="w-10 h-10 rounded bg-surface-container-highest flex items-center justify-center">
+<span class="material-symbols-outlined text-on-surface-variant">delete_sweep</span>
+</div>
+<div>
+<h4 class="font-label-md font-bold text-on-surface">Waste Audit</h4>
+<p class="text-[11px] text-on-surface-variant">1st of every month</p>
+</div>
+</div>
+<div class="flex gap-sm opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary">edit</button>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-error">pause_circle</button>
+</div>
+</div>
+<!-- Job 3 -->
+<div class="p-md border border-outline-variant rounded-xl flex items-center justify-between group bg-surface-container-lowest/50">
+<div class="flex gap-md">
+<div class="w-10 h-10 rounded bg-surface-container-highest/50 flex items-center justify-center">
+<span class="material-symbols-outlined text-outline">error_outline</span>
+</div>
+<div>
+<h4 class="font-label-md font-bold text-outline">Compliance Log</h4>
+<p class="text-[11px] text-outline italic">Paused</p>
+</div>
+</div>
+<div class="flex gap-sm">
+<button class="material-symbols-outlined text-primary">play_circle</button>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-low p-md rounded-lg flex items-start gap-md">
+<span class="material-symbols-outlined text-primary text-sm">info</span>
+<p class="text-[11px] text-on-surface-variant">Scheduled reports are automatically emailed to registered administrators in PDF format.</p>
+</div>
+</section>
+</div>
+<!-- Recent Exports Table Section -->
+<section class="bento-card rounded-xl overflow-hidden">
+<div class="px-xl py-lg border-b border-outline-variant flex justify-between items-center">
+<div class="flex items-center gap-md">
+<div class="p-base bg-tertiary/20 rounded-lg text-tertiary">
+<span class="material-symbols-outlined">history</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Recent Exports</h3>
+</div>
+<button class="flex items-center gap-base text-on-surface-variant hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined text-sm">filter_list</span>
+<span class="font-label-md">Filter</span>
+</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead class="bg-surface-container-low">
+<tr>
+<th class="px-xl py-md font-label-md uppercase text-on-surface-variant tracking-wider">Report Name</th>
+<th class="px-xl py-md font-label-md uppercase text-on-surface-variant tracking-wider">Type</th>
+<th class="px-xl py-md font-label-md uppercase text-on-surface-variant tracking-wider">Date Generated</th>
+<th class="px-xl py-md font-label-md uppercase text-on-surface-variant tracking-wider">Size</th>
+<th class="px-xl py-md font-label-md uppercase text-on-surface-variant tracking-wider text-right">Action</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant font-body-md">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-high/30 transition-colors">
+<td class="px-xl py-lg">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-error text-xl">picture_as_pdf</span>
+<span class="font-bold text-on-surface">May_Budget_Review_Final.pdf</span>
+</div>
+</td>
+<td class="px-xl py-lg text-on-surface-variant">Budget Variance</td>
+<td class="px-xl py-lg font-mono-data text-mono-data text-on-surface-variant">Jun 01, 2024 · 09:12</td>
+<td class="px-xl py-lg text-on-surface-variant">2.4 MB</td>
+<td class="px-xl py-lg text-right">
+<button class="bg-surface-container-high text-on-surface hover:bg-primary hover:text-on-primary p-base rounded-lg transition-all">
+<span class="material-symbols-outlined">download</span>
+</button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-high/30 transition-colors">
+<td class="px-xl py-lg">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-primary text-xl">description</span>
+<span class="font-bold text-on-surface">Raw_Instance_Utilization_Q1.csv</span>
+</div>
+</td>
+<td class="px-xl py-lg text-on-surface-variant">Resource Waste</td>
+<td class="px-xl py-lg font-mono-data text-mono-data text-on-surface-variant">May 28, 2024 · 14:45</td>
+<td class="px-xl py-lg text-on-surface-variant">14.8 MB</td>
+<td class="px-xl py-lg text-right">
+<button class="bg-surface-container-high text-on-surface hover:bg-primary hover:text-on-primary p-base rounded-lg transition-all">
+<span class="material-symbols-outlined">download</span>
+</button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-high/30 transition-colors">
+<td class="px-xl py-lg">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-tertiary text-xl">code</span>
+<span class="font-bold text-on-surface">Infrastructure_Graph_Export.json</span>
+</div>
+</td>
+<td class="px-xl py-lg text-on-surface-variant">Resource Scanner</td>
+<td class="px-xl py-lg font-mono-data text-mono-data text-on-surface-variant">May 25, 2024 · 11:30</td>
+<td class="px-xl py-lg text-on-surface-variant">842 KB</td>
+<td class="px-xl py-lg text-right">
+<button class="bg-surface-container-high text-on-surface hover:bg-primary hover:text-on-primary p-base rounded-lg transition-all">
+<span class="material-symbols-outlined">download</span>
+</button>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-surface-container-high/30 transition-colors">
+<td class="px-xl py-lg">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-error text-xl">picture_as_pdf</span>
+<span class="font-bold text-on-surface">Zombie_Resources_Audit_Apr.pdf</span>
+</div>
+</td>
+<td class="px-xl py-lg text-on-surface-variant">Resource Waste</td>
+<td class="px-xl py-lg font-mono-data text-mono-data text-on-surface-variant">May 20, 2024 · 08:00</td>
+<td class="px-xl py-lg text-on-surface-variant">1.2 MB</td>
+<td class="px-xl py-lg text-right">
+<button class="bg-surface-container-high text-on-surface hover:bg-primary hover:text-on-primary p-base rounded-lg transition-all">
+<span class="material-symbols-outlined">download</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="px-xl py-md bg-surface-container-lowest border-t border-outline-variant flex justify-center">
+<button class="text-primary font-label-md hover:underline">View All Exports History</button>
+</div>
+</section>
+</main>
+<!-- Micro-interaction Scripts -->
+<script>
+    // Simple toast or feedback simulation for generation
+    document.querySelector('button.bg-primary').addEventListener('click', function() {
+        const originalContent = this.innerHTML;
+        const originalBg = 'bg-primary';
+        this.innerHTML = '<span class="material-symbols-outlined animate-spin">sync</span> Generating...';
+        this.disabled = true;
+        
+        setTimeout(() => {
+            this.innerHTML = '<span class="material-symbols-outlined">check_circle</span> Success! Downloading...';
+            this.classList.replace(originalBg, 'bg-tertiary-container');
+            
+            setTimeout(() => {
+                this.innerHTML = originalContent;
+                this.classList.replace('bg-tertiary-container', originalBg);
+                this.disabled = false;
+            }, 2000);
+        }, 1500);
+    });
+
+    // Hover effect for table rows action buttons
+    const rows = document.querySelectorAll('tbody tr');
+    rows.forEach(row => {
+        row.addEventListener('mouseenter', () => {
+            const btn = row.querySelector('button');
+            if(btn) {
+                btn.classList.replace('bg-surface-container-high', 'bg-primary');
+                btn.classList.add('text-on-primary');
+            }
+        });
+        row.addEventListener('mouseleave', () => {
+            const btn = row.querySelector('button');
+            if(btn) {
+                btn.classList.replace('bg-primary', 'bg-surface-container-high');
+                btn.classList.remove('text-on-primary');
+            }
+        });
+    });
+</script>
+</body></html>

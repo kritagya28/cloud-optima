@@ -1,0 +1,38 @@
+@startuml
+skinparam handwritten false
+skinparam monochrome true
+skinparam shadowing false
+skinparam defaultFontName "SansSerif"
+
+package "Frontend (React.js)" {
+    [Dashboard UI] --> [API Client]
+    [Resource Table] --> [API Client]
+}
+
+package "Backend (Node.js/Express)" {
+    [API Routes] --> [Optimization Engine]
+    [API Routes] --> [Resource Scanner]
+    [Optimization Engine] --> [MongoDB]
+    [Resource Scanner] --> [AWS SDK v3]
+}
+
+cloud "AWS Environment" {
+    [Cost Explorer API]
+    [CloudWatch API]
+    [EC2/S3/EBS APIs]
+}
+
+[API Client] ..> [API Routes] : HTTP/JSON
+[AWS SDK v3] ..> [Cost Explorer API] : Read-Only
+[AWS SDK v3] ..> [CloudWatch API] : Read-Only
+[AWS SDK v3] ..> [EC2/S3/EBS APIs] : Describe
+
+note right of [AWS SDK v3]
+  Least Privilege:
+  - ce:GetCostAndUsage
+  - cloudwatch:GetMetricStatistics
+  - ec2:Describe*
+  - s3:ListAllMyBuckets
+end note
+
+@enduml

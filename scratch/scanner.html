@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Resource Scanner | CloudOptix</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-highest": "#334155",
+                        "outline": "#94a3b8",
+                        "surface": "#0f172a",
+                        "on-surface": "#f8fafc",
+                        "on-background": "#f8fafc",
+                        "on-primary": "#ffffff",
+                        "inverse-on-surface": "#0f172a",
+                        "primary-fixed": "#38bdf8",
+                        "on-surface-variant": "#cbd5e1",
+                        "on-secondary-fixed-variant": "#94a3b8",
+                        "tertiary-fixed": "#ffdbcd",
+                        "on-secondary-fixed": "#f1f5f9",
+                        "error-container": "#450a0a",
+                        "tertiary": "#fb923c",
+                        "surface-variant": "#1e293b",
+                        "on-tertiary-container": "#ffede6",
+                        "on-error": "#ffffff",
+                        "on-primary-container": "#ffffff",
+                        "secondary": "#94a3b8",
+                        "surface-container-lowest": "#020617",
+                        "surface-bright": "#1e293b",
+                        "surface-container": "#1e293b",
+                        "secondary-fixed-dim": "#475569",
+                        "inverse-primary": "#0ea5e9",
+                        "outline-variant": "#334155",
+                        "tertiary-container": "#7c2d12",
+                        "on-primary-fixed-variant": "#e0f2fe",
+                        "inverse-surface": "#f8fafc",
+                        "error": "#ef4444",
+                        "on-error-container": "#fca5a5",
+                        "on-secondary-container": "#cbd5e1",
+                        "on-tertiary-fixed-variant": "#ffedd5",
+                        "background": "#0f172a",
+                        "secondary-container": "#1e293b",
+                        "secondary-fixed": "#334155",
+                        "on-tertiary": "#000000",
+                        "on-primary-fixed": "#082f49",
+                        "surface-container-low": "#0f172a",
+                        "on-secondary": "#ffffff",
+                        "surface-tint": "#38bdf8",
+                        "surface-dim": "#020617",
+                        "surface-container-high": "#1e293b",
+                        "tertiary-fixed-dim": "#fdba74",
+                        "on-tertiary-fixed": "#431407",
+                        "primary-container": "#2563eb",
+                        "primary": "#38bdf8",
+                        "primary-fixed-dim": "#0ea5e9"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "base": "4px",
+                        "xs": "8px",
+                        "2xl": "48px",
+                        "sm": "12px",
+                        "xl": "32px",
+                        "gutter": "24px",
+                        "margin-mobile": "16px",
+                        "margin-desktop": "32px",
+                        "lg": "24px",
+                        "md": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "display-lg-mobile": ["Inter"],
+                        "label-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-sm": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "mono-data": ["JetBrains Mono"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "display-lg-mobile": ["28px", {"lineHeight": "34px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "display-lg": ["36px", {"lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "mono-data": ["13px", {"lineHeight": "18px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            background-color: #0f172a;
+            color: #f8fafc;
+            -webkit-font-smoothing: antialiased;
+        }
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #334155; border-radius: 10px; }
+        .glass-panel {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(51, 65, 85, 0.5);
+        }
+    </style>
+</head>
+<body class="font-body-md text-body-md overflow-hidden">
+<!-- Side Navigation Shell -->
+<aside class="h-screen w-64 fixed left-0 top-0 border-r border-outline-variant bg-surface flex flex-col py-lg px-md z-50">
+<div class="mb-xl px-xs">
+<h1 class="font-headline-sm text-headline-sm font-bold text-primary">CloudOptix</h1>
+<p class="text-label-md font-label-md text-outline">FinOps Admin</p>
+</div>
+<nav class="flex-1 space-y-xs overflow-y-auto custom-scrollbar">
+<a class="flex items-center gap-md px-md py-sm transition-colors duration-200 hover:bg-surface-container text-on-surface-variant group rounded-lg" href="#">
+<span class="material-symbols-outlined group-hover:text-primary">dashboard</span>
+<span class="font-body-md text-body-md">Overview</span>
+</a>
+<!-- Active State Navigation -->
+<a class="flex items-center gap-md px-md py-sm transition-colors duration-200 text-primary font-semibold bg-primary/10 rounded-lg" href="#">
+<span class="material-symbols-outlined">troubleshoot</span>
+<span class="font-body-md text-body-md">Resource Scanner</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm transition-colors duration-200 hover:bg-surface-container text-on-surface-variant group rounded-lg" href="#">
+<span class="material-symbols-outlined group-hover:text-primary">analytics</span>
+<span class="font-body-md text-body-md">Reports</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm transition-colors duration-200 hover:bg-surface-container text-on-surface-variant group rounded-lg" href="#">
+<span class="material-symbols-outlined group-hover:text-primary">settings</span>
+<span class="font-body-md text-body-md">Settings</span>
+</a>
+</nav>
+<div class="mt-auto border-t border-outline-variant pt-lg flex items-center gap-md px-xs">
+<div class="w-10 h-10 rounded-full overflow-hidden bg-surface-container-highest">
+<img alt="Alex Chen" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBxzhGHflF3xwD9bB-pykgQyhLZTGZXfzCuNp9-D8_Swo_VXtLzSvdwKNJVyKcM_xEp7n95DuB-b8e-VXl7GkIOlphi4n3UOOu7UoTvZTBRdXNCMHQrb89a4Lznt86TMoBxwz9Czzs9ISk_n5zAqibO8upiygi5D4ohy_hrycRG0bzkjL4lJKlYA_pxKqLiaKa6RRo9wzwf1kyNZcNIJcLYSQy3e9JuO1E4JNsNUf1_rkVGDOS6N4jd3rmXsL_wXDx04YA6ADCPUbE"/>
+</div>
+<div>
+<p class="text-body-md font-semibold text-on-surface">Alex Chen</p>
+<p class="text-label-md text-outline">Project Owner</p>
+</div>
+</div>
+</aside>
+<!-- Top Navigation Shell -->
+<header class="fixed top-0 right-0 left-64 h-16 bg-surface/80 border-b border-outline-variant backdrop-blur-md flex justify-between items-center px-gutter z-40">
+<div class="flex items-center gap-xl">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[20px]">search</span>
+<input class="pl-10 pr-4 py-xs bg-surface-container-lowest border border-outline-variant rounded-full text-body-md w-64 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary text-on-surface transition-all" placeholder="Search resources..." type="text"/>
+</div>
+<div class="flex items-center gap-lg">
+<div class="flex items-center gap-xs text-primary font-label-md text-label-md border-b-2 border-primary pb-1">
+<span class="material-symbols-outlined text-[18px]">public</span>
+                    Region: US-East-1
+                </div>
+<div class="text-on-secondary-fixed-variant font-label-md text-label-md hover:text-primary transition-all cursor-pointer">Summary</div>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<button class="w-10 h-10 flex items-center justify-center text-on-surface-variant hover:bg-surface-container rounded-full transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center text-on-surface-variant hover:bg-surface-container rounded-full transition-colors">
+<span class="material-symbols-outlined">help_outline</span>
+</button>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="ml-64 mt-16 p-xl h-[calc(100vh-64px)] overflow-y-auto bg-background custom-scrollbar">
+<!-- Page Header -->
+<div class="flex justify-between items-end mb-xl">
+<div>
+<h2 class="font-display-lg text-display-lg text-on-surface">Resource Scanner</h2>
+<p class="text-body-lg text-on-surface-variant mt-xs">Optimize infrastructure by identifying idle, orphaned, or underutilized cloud resources.</p>
+</div>
+<div class="flex gap-md">
+<button class="flex items-center gap-xs px-md py-sm bg-surface-container-high border border-outline-variant rounded-lg text-body-md text-on-surface hover:bg-surface-container-highest transition-all">
+<span class="material-symbols-outlined text-[20px]">file_download</span>
+                    Export CSV
+                </button>
+<button class="flex items-center gap-xs px-md py-sm bg-primary text-on-primary rounded-lg text-body-md font-semibold hover:opacity-90 transition-all shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined text-[20px]">sync</span>
+                    Rescan Inventory
+                </button>
+</div>
+</div>
+<!-- Filter Bar -->
+<div class="grid grid-cols-12 gap-lg mb-xl">
+<div class="col-span-12 lg:col-span-9 glass-panel rounded-xl p-md flex flex-wrap gap-lg items-center">
+<div class="flex items-center gap-md">
+<span class="text-label-md font-label-md text-outline uppercase tracking-wider">Service</span>
+<select class="bg-surface-container-lowest border border-outline-variant rounded-lg px-md py-xs text-body-md text-on-surface focus:ring-primary/20">
+<option>All Services</option>
+<option>EC2 Instances</option>
+<option>RDS Databases</option>
+<option>EBS Volumes</option>
+<option>S3 Buckets</option>
+</select>
+</div>
+<div class="flex items-center gap-md border-l border-outline-variant pl-lg">
+<span class="text-label-md font-label-md text-outline uppercase tracking-wider">Status</span>
+<div class="flex gap-xs">
+<span class="px-md py-xs rounded-full bg-primary/20 text-primary border border-primary/30 text-label-md font-semibold cursor-pointer">All</span>
+<span class="px-md py-xs rounded-full bg-surface-container-lowest text-outline border border-outline-variant text-label-md font-medium hover:bg-surface-container-high cursor-pointer transition-colors">Orphaned</span>
+<span class="px-md py-xs rounded-full bg-surface-container-lowest text-outline border border-outline-variant text-label-md font-medium hover:bg-surface-container-high cursor-pointer transition-colors">Idle</span>
+</div>
+</div>
+</div>
+<div class="col-span-12 lg:col-span-3 glass-panel rounded-xl p-md flex items-center justify-between">
+<div class="flex flex-col">
+<span class="text-label-md font-label-md text-outline">Total Potential Savings</span>
+<span class="text-headline-md font-mono-data text-primary">$12,482.50<span class="text-body-md font-normal text-outline">/mo</span></span>
+</div>
+<span class="material-symbols-outlined text-primary text-[32px] opacity-30">savings</span>
+</div>
+</div>
+<!-- Data Table Container -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl shadow-sm overflow-hidden">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-outline-variant bg-surface-container/50">
+<th class="px-lg py-md text-label-md font-label-md text-outline uppercase tracking-wider">Resource ID</th>
+<th class="px-lg py-md text-label-md font-label-md text-outline uppercase tracking-wider">Service Type</th>
+<th class="px-lg py-md text-label-md font-label-md text-outline uppercase tracking-wider">Utilization</th>
+<th class="px-lg py-md text-label-md font-label-md text-outline uppercase tracking-wider">Monthly Waste</th>
+<th class="px-lg py-md text-label-md font-label-md text-outline uppercase tracking-wider text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/30">
+<!-- Row 1: Critical Waste -->
+<tr class="hover:bg-error/5 transition-colors group">
+<td class="px-lg py-md">
+<div class="flex flex-col">
+<span class="font-mono-data text-body-md text-on-surface">i-0a823f99e281</span>
+<span class="text-label-md text-error flex items-center gap-xs mt-1">
+<span class="material-symbols-outlined text-[14px]">warning</span> Critical: 0% CPU
+                                </span>
+</div>
+</td>
+<td class="px-lg py-md">
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-outline text-[18px]">dns</span>
+<span class="text-body-md text-on-surface-variant">EC2 (t3.large)</span>
+</div>
+</td>
+<td class="px-lg py-md">
+<div class="w-full max-w-[120px]">
+<div class="flex justify-between mb-1">
+<span class="text-label-md font-mono-data text-outline">0.2%</span>
+</div>
+<div class="w-full bg-surface-container h-1.5 rounded-full">
+<div class="bg-error w-[2%] h-1.5 rounded-full shadow-[0_0_8px_rgba(239,68,68,0.4)]"></div>
+</div>
+</div>
+</td>
+<td class="px-lg py-md">
+<span class="font-mono-data text-body-md font-semibold text-on-surface">$148.00</span>
+</td>
+<td class="px-lg py-md text-right">
+<div class="flex gap-xs justify-end">
+<button class="px-md py-1.5 text-label-md font-semibold text-error hover:bg-error/10 rounded border border-error/20 transition-all">Terminate</button>
+<button class="p-1.5 text-outline hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2: Orphaned IP -->
+<tr class="hover:bg-surface-container transition-colors group">
+<td class="px-lg py-md">
+<div class="flex flex-col">
+<span class="font-mono-data text-body-md text-on-surface">eipalloc-042ff3</span>
+<span class="text-label-md text-outline flex items-center gap-xs mt-1">
+                                    Orphaned Static IP
+                                </span>
+</div>
+</td>
+<td class="px-lg py-md">
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-outline text-[18px]">settings_ethernet</span>
+<span class="text-body-md text-on-surface-variant">Elastic IP</span>
+</div>
+</td>
+<td class="px-lg py-md">
+<span class="text-label-md font-medium text-outline">Unattached</span>
+</td>
+<td class="px-lg py-md">
+<span class="font-mono-data text-body-md font-semibold text-on-surface">$3.60</span>
+</td>
+<td class="px-lg py-md text-right">
+<div class="flex gap-xs justify-end">
+<button class="px-md py-1.5 text-label-md font-semibold text-primary hover:bg-primary/10 rounded border border-primary/20 transition-all">Release</button>
+<button class="p-1.5 text-outline hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3: Underutilized RDS -->
+<tr class="hover:bg-surface-container transition-colors group">
+<td class="px-lg py-md">
+<div class="flex flex-col">
+<span class="font-mono-data text-body-md text-on-surface">prod-read-replica-01</span>
+<span class="text-label-md text-tertiary flex items-center gap-xs mt-1">
+                                    Low IOPS detected
+                                </span>
+</div>
+</td>
+<td class="px-lg py-md">
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-outline text-[18px]">database</span>
+<span class="text-body-md text-on-surface-variant">RDS (db.m5.xlarge)</span>
+</div>
+</td>
+<td class="px-lg py-md">
+<div class="w-full max-w-[120px]">
+<div class="flex justify-between mb-1">
+<span class="text-label-md font-mono-data text-outline">14.5%</span>
+</div>
+<div class="w-full bg-surface-container h-1.5 rounded-full">
+<div class="bg-tertiary w-[14%] h-1.5 rounded-full"></div>
+</div>
+</div>
+</td>
+<td class="px-lg py-md">
+<span class="font-mono-data text-body-md font-semibold text-on-surface">$512.40</span>
+</td>
+<td class="px-lg py-md text-right">
+<div class="flex gap-xs justify-end">
+<button class="px-md py-1.5 text-label-md font-semibold text-primary hover:bg-primary/10 rounded border border-primary/20 transition-all">Resize</button>
+<button class="p-1.5 text-outline hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 4: Orphaned EBS -->
+<tr class="hover:bg-error/5 transition-colors group">
+<td class="px-lg py-md">
+<div class="flex flex-col">
+<span class="font-mono-data text-body-md text-on-surface">vol-084e3199c0</span>
+<span class="text-label-md text-error flex items-center gap-xs mt-1">
+<span class="material-symbols-outlined text-[14px]">warning</span> Detached for 30+ days
+                                </span>
+</div>
+</td>
+<td class="px-lg py-md">
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-outline text-[18px]">storage</span>
+<span class="text-body-md text-on-surface-variant">EBS Volume (gp3)</span>
+</div>
+</td>
+<td class="px-lg py-md">
+<span class="text-label-md font-medium text-outline">No Attachment</span>
+</td>
+<td class="px-lg py-md">
+<span class="font-mono-data text-body-md font-semibold text-on-surface">$24.00</span>
+</td>
+<td class="px-lg py-md text-right">
+<div class="flex gap-xs justify-end">
+<button class="px-md py-1.5 text-label-md font-semibold text-error hover:bg-error/10 rounded border border-error/20 transition-all">Delete</button>
+<button class="p-1.5 text-outline hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<!-- Table Footer -->
+<div class="px-lg py-md border-t border-outline-variant bg-surface-container/30 flex justify-between items-center">
+<span class="text-label-md text-outline">Showing 4 of 128 flagged resources</span>
+<div class="flex gap-xs">
+<button class="p-1.5 rounded border border-outline-variant text-outline hover:bg-surface-container disabled:opacity-20" disabled="">
+<span class="material-symbols-outlined text-[20px]">chevron_left</span>
+</button>
+<button class="p-1.5 rounded border border-outline-variant text-outline hover:bg-surface-container">
+<span class="material-symbols-outlined text-[20px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Optimization Insights Bento -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-lg mt-xl">
+<div class="bg-surface-container p-lg rounded-xl border border-outline-variant/50 relative overflow-hidden group">
+<div class="relative z-10">
+<h4 class="text-label-md font-label-md text-outline uppercase mb-md">Quick Win</h4>
+<p class="text-body-lg font-semibold text-on-surface mb-sm">Unattached Elastic IPs</p>
+<p class="text-body-md text-on-surface-variant mb-lg">You have 12 unattached EIPs costing $43.20/mo. Releasing these takes 1 click.</p>
+<button class="text-primary font-semibold text-body-md flex items-center gap-xs group-hover:gap-sm transition-all">
+                        Release All <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+<span class="material-symbols-outlined absolute -bottom-4 -right-4 text-[120px] text-primary opacity-[0.05] group-hover:opacity-[0.1] transition-opacity rotate-12">link_off</span>
+</div>
+<div class="bg-surface-container p-lg rounded-xl border border-outline-variant/50 relative overflow-hidden group">
+<div class="relative z-10">
+<h4 class="text-label-md font-label-md text-outline uppercase mb-md">Policy Alert</h4>
+<p class="text-body-lg font-semibold text-on-surface mb-sm">Idle EC2 Identification</p>
+<p class="text-body-md text-on-surface-variant mb-lg">8 instances have had &lt; 1% CPU for 7 days. Move to Spot or Terminate.</p>
+<button class="text-primary font-semibold text-body-md flex items-center gap-xs group-hover:gap-sm transition-all">
+                        View Instances <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+<span class="material-symbols-outlined absolute -bottom-4 -right-4 text-[120px] text-tertiary opacity-[0.05] group-hover:opacity-[0.1] transition-opacity -rotate-12">timer_off</span>
+</div>
+<div class="bg-surface-container p-lg rounded-xl border border-outline-variant/50 relative overflow-hidden group">
+<div class="relative z-10">
+<h4 class="text-label-md font-label-md text-outline uppercase mb-md">Storage Audit</h4>
+<p class="text-body-lg font-semibold text-on-surface mb-sm">Old Snapshots</p>
+<p class="text-body-md text-on-surface-variant mb-lg">Snapshots older than 90 days are consuming 4.2TB ($210/mo) across regions.</p>
+<button class="text-primary font-semibold text-body-md flex items-center gap-xs group-hover:gap-sm transition-all">
+                        Run Cleanup <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+<span class="material-symbols-outlined absolute -bottom-4 -right-4 text-[120px] text-secondary opacity-[0.05] group-hover:opacity-[0.1] transition-opacity">auto_delete</span>
+</div>
+</div>
+</main>
+<!-- Micro-interaction Script -->
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Simple animation for the progress bars on load
+            const progressBars = document.querySelectorAll('.bg-error, .bg-tertiary');
+            progressBars.forEach(bar => {
+                const targetWidth = bar.style.width;
+                bar.style.width = '0%';
+                setTimeout(() => {
+                    bar.style.transition = 'width 1s cubic-bezier(0.4, 0, 0.2, 1)';
+                    bar.style.width = targetWidth;
+                }, 200);
+            });
+
+            // Row hover highlight effect
+            const rows = document.querySelectorAll('tbody tr');
+            rows.forEach(row => {
+                row.addEventListener('mouseenter', () => {
+                    row.style.cursor = 'pointer';
+                });
+            });
+        });
+    </script>
+</body></html>

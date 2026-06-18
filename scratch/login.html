@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CloudOptix | Secure Login</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-container": "#8691a7",
+                    "background": "#0b1326",
+                    "tertiary-fixed-dim": "#bcc7de",
+                    "secondary": "#b9c8de",
+                    "error-container": "#93000a",
+                    "surface-container-lowest": "#060e20",
+                    "primary-fixed": "#d8e2ff",
+                    "surface-container": "#171f33",
+                    "on-background": "#dae2fd",
+                    "outline": "#8c909f",
+                    "on-secondary-container": "#a7b6cc",
+                    "primary-fixed-dim": "#adc6ff",
+                    "on-secondary": "#233143",
+                    "on-error": "#690005",
+                    "secondary-container": "#39485a",
+                    "on-tertiary": "#263143",
+                    "surface": "#0b1326",
+                    "secondary-fixed": "#d4e4fa",
+                    "on-primary-fixed-variant": "#004395",
+                    "error": "#ffb4ab",
+                    "on-surface-variant": "#c2c6d6",
+                    "surface-bright": "#31394d",
+                    "inverse-surface": "#dae2fd",
+                    "on-secondary-fixed-variant": "#39485a",
+                    "on-tertiary-fixed": "#111c2d",
+                    "on-surface": "#dae2fd",
+                    "inverse-primary": "#005ac2",
+                    "surface-variant": "#2d3449",
+                    "on-tertiary-fixed-variant": "#3c475a",
+                    "surface-container-highest": "#2d3449",
+                    "surface-dim": "#0b1326",
+                    "surface-container-high": "#222a3d",
+                    "tertiary-fixed": "#d8e3fb",
+                    "on-primary-fixed": "#001a42",
+                    "secondary-fixed-dim": "#b9c8de",
+                    "on-primary-container": "#00285d",
+                    "outline-variant": "#424754",
+                    "primary-container": "#4d8eff",
+                    "surface-container-low": "#131b2e",
+                    "inverse-on-surface": "#283044",
+                    "surface-tint": "#adc6ff",
+                    "tertiary": "#bcc7de",
+                    "on-primary": "#002e6a",
+                    "on-error-container": "#ffdad6",
+                    "on-tertiary-container": "#1f2a3c",
+                    "primary": "#adc6ff",
+                    "on-secondary-fixed": "#0d1c2d"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "gutter": "20px",
+                    "xs": "4px",
+                    "xl": "40px",
+                    "sm": "8px",
+                    "margin-mobile": "16px",
+                    "md": "16px",
+                    "margin-desktop": "32px",
+                    "max-width": "1280px",
+                    "base": "4px",
+                    "lg": "24px"
+            },
+            "fontFamily": {
+                    "headline-md": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "headline-lg-mobile": ["Inter"],
+                    "body-md": ["Inter"],
+                    "display-lg": ["Inter"],
+                    "label-md": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "body-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #0b1326;
+            color: #dae2fd;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        .input-field {
+            background-color: #171f33;
+            border: 1px solid rgba(140, 144, 159, 0.2);
+            transition: all 0.2s ease;
+        }
+
+        .input-field:focus {
+            border-color: #adc6ff;
+            box-shadow: 0 0 0 2px rgba(173, 198, 255, 0.2);
+            outline: none;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+
+        /* Ambient Background Effects */
+        .bg-glow {
+            position: absolute;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(77, 142, 255, 0.1) 0%, rgba(11, 19, 38, 0) 70%);
+            border-radius: 50%;
+            z-index: 0;
+            filter: blur(80px);
+            animation: pulse 12s infinite alternate ease-in-out;
+        }
+
+        @keyframes pulse {
+            from { transform: translate(-30%, -30%) scale(1); opacity: 0.4; }
+            to { transform: translate(-20%, -20%) scale(1.1); opacity: 0.7; }
+        }
+
+        .asymmetrical-split {
+            display: grid;
+            grid-template-columns: 1fr;
+            min-height: 100vh;
+        }
+
+        @media (min-width: 1024px) {
+            .asymmetrical-split {
+                grid-template-columns: 1.1fr 0.9fr;
+            }
+        }
+    </style>
+</head>
+<body class="relative">
+<!-- Ambient Background Effects -->
+<div class="bg-glow top-0 left-0"></div>
+<div class="absolute inset-0 opacity-10 pointer-events-none z-0" style="background-image: radial-gradient(#8c909f 0.5px, transparent 0.5px); background-size: 32px 32px;"></div>
+<main class="asymmetrical-split relative z-10">
+<!-- Left Side: Brand Area -->
+<section class="hidden lg:flex flex-col justify-between p-xl bg-surface-container-lowest/50 border-r border-outline-variant/30 relative overflow-hidden">
+<div class="relative z-10">
+<div class="flex items-center gap-4 mb-xl">
+<div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary text-2xl" style="font-variation-settings: 'FILL' 1;">cloud_done</span>
+</div>
+<span class="font-headline-md text-on-background tracking-tight">CloudOptix</span>
+</div>
+<div class="mt-20">
+<h1 class="text-[80px] leading-[1] font-bold text-on-background tracking-tighter mb-lg">
+                        Intelligence<br/>
+<span class="text-primary">Optimized.</span>
+</h1>
+<p class="font-body-lg text-on-surface-variant max-w-md">
+                        The definitive operating system for enterprise resource intelligence and secure cloud orchestration.
+                    </p>
+</div>
+</div>
+<!-- Big Stylized Logo Watermark -->
+<div class="absolute -bottom-20 -left-20 opacity-[0.03] select-none pointer-events-none">
+<span class="material-symbols-outlined text-[600px]" style="font-variation-settings: 'FILL' 1;">cloud_done</span>
+</div>
+<div class="relative z-10 flex items-center gap-gutter">
+<div class="flex items-center gap-2 px-4 py-2 bg-secondary-container/20 border border-secondary-container/40 rounded-full">
+<span class="material-symbols-outlined text-primary text-[16px]">verified_user</span>
+<span class="font-label-sm text-label-sm text-primary uppercase tracking-widest">Encrypted Session</span>
+</div>
+<p class="font-label-sm text-outline/40">v4.2.0-STABLE</p>
+</div>
+</section>
+<!-- Right Side: Login Form -->
+<section class="flex items-center justify-center p-margin-mobile md:p-xl bg-background">
+<div class="w-full max-w-[400px]">
+<!-- Mobile Header (Visible only on small screens) -->
+<div class="lg:hidden text-center mb-xl">
+<div class="inline-flex items-center justify-center w-14 h-14 bg-primary rounded-xl mb-md">
+<span class="material-symbols-outlined text-on-primary text-4xl" style="font-variation-settings: 'FILL' 1;">cloud_done</span>
+</div>
+<h1 class="font-headline-lg text-on-background tracking-tight mb-xs">CloudOptix</h1>
+<p class="font-label-md text-on-surface-variant">Enterprise Resource Intelligence</p>
+</div>
+<div class="space-y-lg">
+<div class="space-y-xs">
+<h2 class="font-headline-md text-on-background">Welcome back</h2>
+<p class="font-body-md text-on-surface-variant">Sign in to your work account</p>
+</div>
+<form class="space-y-md">
+<!-- Email Field -->
+<div class="space-y-xs">
+<label class="font-label-md text-label-md text-on-surface-variant block" for="email">Work Email</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">mail</span>
+<input class="input-field w-full pl-10 pr-md py-3.5 rounded-xl text-on-surface font-body-md placeholder:text-outline/40" id="email" name="email" placeholder="name@company.com" type="email"/>
+</div>
+</div>
+<!-- Password Field -->
+<div class="space-y-xs">
+<div class="flex justify-between items-center">
+<label class="font-label-md text-label-md text-on-surface-variant block" for="password">Password</label>
+<a class="font-label-sm text-label-sm text-primary hover:text-primary-container transition-all" href="#">Forgot Password?</a>
+</div>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">lock</span>
+<input class="input-field w-full pl-10 pr-12 py-3.5 rounded-xl text-on-surface font-body-md placeholder:text-outline/40" id="password" name="password" placeholder="••••••••" type="password"/>
+<button class="absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant hover:text-on-surface transition-colors" type="button">
+<span class="material-symbols-outlined text-[20px]">visibility</span>
+</button>
+</div>
+</div>
+<!-- Sign In Button -->
+<button class="w-full bg-primary hover:bg-primary-container text-on-primary font-label-md py-4 rounded-xl transition-all active:scale-[0.98] mt-lg flex items-center justify-center gap-2 shadow-lg shadow-primary/10" type="submit">
+<span>Sign In</span>
+<span class="material-symbols-outlined text-[20px]">login</span>
+</button>
+</form>
+<!-- Divider -->
+<div class="relative my-xl">
+<div class="absolute inset-0 flex items-center">
+<div class="w-full border-t border-outline-variant/30"></div>
+</div>
+<div class="relative flex justify-center text-label-sm">
+<span class="bg-background px-4 text-on-surface-variant uppercase tracking-widest text-[10px]">Or continue with</span>
+</div>
+</div>
+<!-- SSO Button -->
+<button class="w-full border border-outline-variant/50 hover:bg-surface-variant/30 text-on-surface font-label-md py-3.5 rounded-xl transition-all flex items-center justify-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]">identity_platform</span>
+<span>Company SSO</span>
+</button>
+<!-- Footer Links -->
+<footer class="mt-xl pt-lg border-t border-outline-variant/20">
+<div class="flex flex-wrap gap-x-lg gap-y-2 mb-md justify-center lg:justify-start">
+<a class="font-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="font-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Terms of Service</a>
+<a class="font-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Support</a>
+</div>
+<p class="font-label-sm text-outline/40 text-center lg:text-left">© 2024 CloudOptix Inc. All rights reserved.</p>
+</footer>
+</div>
+</div>
+</section>
+</main>
+<!-- Micro-interaction Script -->
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.querySelector('form');
+            const submitBtn = form.querySelector('button[type="submit"]');
+
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                submitBtn.innerHTML = `
+                    <svg class="animate-spin h-5 w-5 text-on-primary" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    <span class="ml-2">Authenticating...</span>
+                `;
+                submitBtn.disabled = true;
+                
+                // Simulate network latency
+                setTimeout(() => {
+                    submitBtn.classList.remove('bg-primary');
+                    submitBtn.classList.add('bg-emerald-600');
+                    submitBtn.innerHTML = `
+                        <span class="material-symbols-outlined">check_circle</span>
+                        <span>Success</span>
+                    `;
+                }, 1500);
+            });
+
+            // Password visibility toggle
+            const togglePass = document.querySelector('button[type="button"]');
+            const passInput = document.getElementById('password');
+            if (togglePass && passInput) {
+                togglePass.addEventListener('click', () => {
+                    const type = passInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                    passInput.setAttribute('type', type);
+                    togglePass.children[0].innerText = type === 'password' ? 'visibility' : 'visibility_off';
+                });
+            }
+        });
+    </script>
+</body></html>

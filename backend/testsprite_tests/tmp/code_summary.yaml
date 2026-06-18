@@ -1,0 +1,135 @@
+version: "2"
+type: backend
+tech_stack:
+  - JavaScript
+  - Node.js
+  - Express
+  - Mongoose
+  - MongoDB
+  - AWS SDK v3 (STS, EC2)
+features:
+  - name: Health Check API
+    description: Simple health verification of the running API server
+    files:
+      - src/index.js
+    endpoints:
+      - method: GET
+        path: /health
+        description: Check API health status
+        auth_required: false
+        response_schema:
+          "200": object
+  - name: Settings Management API
+    description: CRUD/save AWS configurations securely with encryption
+    files:
+      - src/routes/api.js
+      - src/utils/crypto.js
+      - src/models/User.js
+    endpoints:
+      - method: POST
+        path: /api/settings/aws
+        description: Save encrypted AWS credentials
+        auth_required: true
+        request_schema:
+          body:
+            accessKeyId: string
+            secretAccessKey: string
+            region: string
+        response_schema:
+          "200": object
+          "400": object
+          "401": object
+          "500": object
+  - name: AWS Validation API
+    description: Validate AWS credentials directly via STS client
+    files:
+      - src/routes/api.js
+    endpoints:
+      - method: POST
+        path: /api/validate-aws
+        description: Validate credentials with STS
+        auth_required: false
+        request_schema:
+          body:
+            accessKeyId: string
+            secretAccessKey: string
+        response_schema:
+          "200": object
+          "400": object
+  - name: Dashboard Data API
+    description: Retrieve live active resources, costs, and details from AWS SDK
+    files:
+      - src/routes/api.js
+      - src/services/awsScanner.js
+    endpoints:
+      - method: POST
+        path: /api/get-dashboard-data
+        description: Fetch EC2 and cost info
+        auth_required: false
+        request_schema:
+          body:
+            accessKeyId: string
+            secretAccessKey: string
+            region: string
+        response_schema:
+          "200": object
+          "400": object
+          "500": object
+  - name: Dashboard Summary API
+    description: Aggregated cost stats and savings metrics
+    files:
+      - src/routes/api.js
+      - src/models/ResourceSnapshot.js
+    endpoints:
+      - method: GET
+        path: /api/dashboard/summary
+        description: Get summary of active costs and recommendations count
+        auth_required: true
+        response_schema:
+          "200": object
+          "500": object
+  - name: Resource Scanner API
+    description: Triggers full scan of EC2, S3, EBS, and Elastic IP resources with rules
+    files:
+      - src/routes/api.js
+      - src/services/awsScanner.js
+      - src/services/optimizationEngine.js
+    endpoints:
+      - method: GET
+        path: /api/resources/scanner
+        description: Execute scan and compute recommendations
+        auth_required: true
+        response_schema:
+          "200": object
+          "500": object
+  - name: Resource History API
+    description: Retrieve cost trends historical records
+    files:
+      - src/routes/api.js
+      - src/models/CostTrend.js
+    endpoints:
+      - method: GET
+        path: /api/resources/history
+        description: Retrieve trends
+        auth_required: true
+        response_schema:
+          "200": object
+          "500": object
+  - name: Optimize Resource API
+    description: Perform optimization actions on a specific resource by ID
+    files:
+      - src/routes/api.js
+      - src/models/ResourceSnapshot.js
+    endpoints:
+      - method: POST
+        path: /api/resources/optimize/:id
+        description: Apply action (like apply) to resource
+        auth_required: true
+        request_schema:
+          body:
+            action: string
+        response_schema:
+          "200": object
+          "404": object
+          "500": object
+known_limitations: []
